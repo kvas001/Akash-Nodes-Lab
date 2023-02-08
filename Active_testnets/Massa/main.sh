@@ -23,6 +23,7 @@ echo 'export MASSA_LINK='${MASSA_LINK} >> $HOME/.bashrc
 echo 'export pass='${pass} >> $HOME/.bashrc
 echo 'export client='${client} >> $HOME/.bashrc
 echo 'export node='${node} >> $HOME/.bashrc
+echo 'export wait='${wait} >> $HOME/.bashrc
 source $HOME/.bashrc
 echo ==========================================================
 sleep 5
@@ -107,11 +108,11 @@ do
 		
 		if [[ "$int_balance" -gt "99" ]] ; then
 			echo "More than 99. Баланс токенов более 99. "
-			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0 -p $pass)
+			resp=$(./massa-client buy_rolls $my_wallet_addr 1 0 -p $pass)
 			echo $resp
 		elif [[ "$int_balance" -lt "100" ]] ; then
 			echo "Less than 100. Баланс токенов менее 100."
 		fi
      
-	sleep 5m       
+	sleep $wait       
 done
